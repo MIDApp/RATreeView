@@ -95,12 +95,12 @@
   return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (id)awakeAfterUsingCoder:(NSCoder *)aDecoder
 {
-  self = [super initWithCoder:aDecoder];
-  if (self) {
-    CGRect innerFrame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
-    [self commonInitWithFrame:innerFrame style:RATreeViewStylePlain];
+  self = [super awakeAfterUsingCoder:aDecoder];
+  {
+    self.rowsExpandingAnimation = RATreeViewRowAnimationTop;
+    self.rowsCollapsingAnimation = RATreeViewRowAnimationBottom;
   }
   return self;
 }
