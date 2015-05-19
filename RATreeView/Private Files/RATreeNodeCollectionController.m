@@ -82,7 +82,6 @@
 - (void)expandRowForItem:(id)item expandChildren:(BOOL)expandChildren updates:(void (^)(NSIndexSet *))updates
 {
   NSParameterAssert(updates);
-  [self.rootController resetIndex];
   
   RATreeNodeController *parentController = [self.rootController controllerForItem:item];
   NSMutableArray *items = [@[item] mutableCopy];
@@ -146,7 +145,6 @@
 - (void)collapseRowForItem:(id)item collapseChildren:(BOOL)collapseChildren updates:(void (^)(NSIndexSet *))updates
 {
   NSParameterAssert(updates);
-  [self.rootController resetIndex];
   
   RATreeNodeController *controller = [self.rootController controllerForItem:item];
   NSIndexSet *deletions = controller.descendantsIndexes;
@@ -157,7 +155,6 @@
 
 - (void)insertItemsAtIndexes:(NSIndexSet *)indexes inParent:(id)item
 {
-  [self.rootController resetIndex];
   RATreeNodeController *parentController = [self.rootController controllerForItem:item];
   NSArray *newControllers = [self controllersForNodesWithIndexes:indexes inParentController:parentController];
   [parentController insertChildControllers:newControllers atIndexes:indexes];
@@ -166,7 +163,6 @@
 - (void)moveItemAtIndex:(NSInteger)index inParent:(id)parent toIndex:(NSInteger)newIndex inParent:(id)newParent updates:(void (^)(NSIndexSet *, NSIndexSet *))updates
 {
   NSParameterAssert(updates);
-  [self.rootController resetIndex];
   
   NSMutableIndexSet *removedIndexes = [NSMutableIndexSet indexSet];
   NSMutableIndexSet *addedIndexes = [NSMutableIndexSet indexSet];
@@ -195,7 +191,6 @@
 
 - (void)removeItemsAtIndexes:(NSIndexSet *)indexes inParent:(id)item updates:(void (^)(NSIndexSet *))updates
 {
-  [self.rootController resetIndex];
   RATreeNodeController *parentController = [self.rootController controllerForItem:item];
   
   NSMutableIndexSet *indexesToRemoval = [NSMutableIndexSet indexSet];

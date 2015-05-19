@@ -48,6 +48,5 @@
 - (RATreeNodeController *)controllerForIndex:(NSInteger)index;
 - (RATreeNodeController *)controllerForItem:(id)item;
 
-- (void)resetIndex;
 
 @end
